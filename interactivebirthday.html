@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTERACTIVE BIRTHDAY CARD</title>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .green {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+
+</html>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+
+<script type="text/babel">
+
+    function App() {
+
+        let [name, setName] = React.useState("")
+        let [message, setMessage] = React.useState("")
+        let [con, setCon] = React.useState(false)
+
+        function changeName(event) {
+            setName(event.target.value);
+            setCon(false);
+        }
+        function changemessage(event) {
+            setMessage(event.target.value);
+            setCon(false);
+        }
+        function handleClick() {
+            setCon(true);
+        }
+
+        return <>
+
+            <input type="text" value={name} onInput={changeName} placeholder="enter name" />
+            <input type="text" value={message} onInput={changemessage} placeholder="enter message" />
+            {con ? <h2>Happy Birthday  <span className={name.length > 5 ? "red" : "green"}>{name}</span>{message}</h2> : ""}
+
+            <button onClick={handleClick}>Click</button>
+
+        </>
+    }
+
+
+
+    let dom = ReactDOM.createRoot(document.getElementById("root"));
+    dom.render(<App />);
+</script>

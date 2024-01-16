@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REACT USESTATE HOOK ASSIGNMENT: CRICKET SCOREBOARD</title>
+    <style>
+        .stylebutton{
+            padding: 5px 16px;
+            background-color: black;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+        .runsstyle{
+            color: green;
+        }
+        .stylewicket{
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+</body>
+
+</html>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+
+<script type="text/babel">
+
+    function Increasebyfour(props) {
+
+
+        return <button className="stylebutton" onClick={props.four}>Increase runs by 4</button>
+    }
+    function Increasebyeight(props) {
+        return <button className="stylebutton" onClick={props.eight}>Increase runs by 8</button>
+    }
+    function Increasebythree(props) {
+        return <button className="stylebutton" onClick={props.three}>Increase runs by 3</button>
+    }
+
+
+
+    function CricketScoreboard() {
+        let [runs, setRuns] = React.useState(0);
+        let [wickets, setWickets] = React.useState(0);
+
+        function four() {
+            setRuns(runs + 4);
+        }
+
+
+        function eight() {
+            setRuns(runs + 8);
+        }
+
+        function three() {
+            setRuns(runs + 3);
+        }
+
+        function updateWicket() {
+            if (wickets <= 9) {
+                setWickets(wickets + 1);
+            }
+        }
+
+        return <div>
+            <h2 className="runsstyle">Run is : {runs}</h2>
+            <h4 className="stylewicket">Wicket is : {wickets}</h4>
+            <Increasebyfour runs={runs} four={four} />
+            <Increasebyeight runs={runs} eight={eight} />
+            <Increasebythree runs={runs} three={three} />
+
+            <button className="stylebutton" onClick={updateWicket}>Update Wicket</button>
+
+            {wickets == 10 ? <h2>Game Over</h2> : ""}
+
+        </div>
+
+    }
+
+
+
+    let dom = ReactDOM.createRoot(document.getElementById("root"));
+    dom.render(<CricketScoreboard />);
+</script>
